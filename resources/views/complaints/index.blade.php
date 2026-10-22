@@ -1,0 +1,3 @@
+@extends('layout')
+@section('title','Complaints')
+@section('content')<div class="d-flex flex-wrap gap-3 justify-content-between align-items-end mb-4"><div><p class="eyebrow">THE CONVERSATION BOARD</p><h1 class="editorial">Every concern has a next step.</h1><p class="text-secondary mb-0">{{ auth()->user()->role==='staff'?'All campus complaints, in one considered workspace.':'Your concerns and their progress, without the guesswork.' }}</p></div><a href="{{ route('complaints.create') }}" class="btn btn-brand">+ New complaint</a></div>@include('complaints.filters')<div class="surface overflow-hidden">@include('complaints.table',['rows'=>$complaints])</div><div class="mt-4">{{ $complaints->links('pagination::bootstrap-5') }}</div>@endsection
