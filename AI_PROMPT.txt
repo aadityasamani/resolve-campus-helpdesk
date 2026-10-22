@@ -1,0 +1,56 @@
+Build a complete, student-friendly web application called “Resolve Campus Helpdesk” for registering and managing complaints in a college or campus. Use Laravel 12 with PHP, Blade templates, Bootstrap and SQLite. Follow the approved Online Complaint Registration theme. Keep the source understandable for a practical demonstration, while making the application feel like a polished campus service product.
+
+DESIGN AND VISUAL STYLE
+
+Create a calm campus-care identity. Use warm off-white for the page background (#F5F5EF), deep green for main text (#213C3B), cream for cards and forms (#FFFEFA), muted gray-green for secondary text (#70817A), and pale green for primary buttons (#D9EDB7). Give buttons dark text (#23412E), a green border (#B6CE95) and a slightly stronger hover background (#C7DFA0). Use amber for Open complaints, lilac for In progress and green for Resolved; reserve red for errors and destructive actions.
+
+Use a clean system/Segoe UI font with Georgia editorial headings, readable field labels, consistent spacing and strong contrast. Give cards an 18 px radius, the hero 23 px, fields 10 px and status pills 30 px. Use subtle 1 px borders (#E0E5D7), restrained shadows, 0.75 rem input padding and generous Bootstrap grid spacing. Provide responsive navigation, stacked mobile forms and horizontally scrollable tables. Include helpful empty states, visible focus states and clear confirmation messages.
+
+APPLICATION AND NAVIGATION
+
+Create branded sign-in and registration screens. After login, show a dashboard with real Open, In progress and Resolved counts, recent complaints and a Report a concern action. Provide navigation for Overview, Complaints and Reports, with Categories available to staff. Display the current user, role and sign-out action. Include a complaint form, detail page, follow-up timeline and staff category workspace.
+
+DATABASE
+
+Use Laravel migrations and SQLite with related users, categories, complaints and comments tables. Complaints must reference their creator and category and optionally an assigned staff member. Comments must reference a complaint and author. Include integer primary keys, explicit foreign keys, timestamps, priorities, statuses and a resolution timestamp. Restrict deletion of categories in use, cascade comments when their complaint is deleted and clear removed staff assignments. Seed useful fictional categories; keep demo accounts local and avoid public hard-coded passwords.
+
+LOGIN AND ACCESS CONTROL
+
+Implement registration, login and logout using hashed passwords, CSRF protection, session renewal after login and session invalidation after logout. Require password confirmation and at least eight characters, and throttle authentication attempts. Protect application pages from guests. Students may access only their own complaints and follow-ups; staff may manage campus-wide complaints, categories, assignments and status. Enforce permissions on the server and reject client attempts to create a staff role or access another student’s record.
+
+CRUD MODULES
+
+Implement complete create, read, update and delete workflows for Complaints and Categories. Complaint fields include title, description, location, category and Low/Normal/Urgent priority; staff also choose Open/In progress/Resolved status and an assignee. Category fields include a unique name and optional description. Validate required fields, lengths, existing references and permitted values. Preserve invalid input and show useful errors. Confirm deletion and explain why an in-use category cannot be deleted. Set resolved_at when resolving and clear it when reopening.
+
+SEARCH FILTERING AND FOLLOW UPS
+
+Search complaints by title or location, filter by category/status and paginate while retaining filters. Show references such as R-0001, clear dates, owner and assigned staff. Provide a follow-up form and a chronological comment history on complaint details. Keep every list, dashboard counter and search query restricted to the current user’s permissions.
+
+REPORTS AND IMPLEMENTATION QUALITY
+
+Create a reports page with filtered complaint records, status summaries, generation time and print-friendly styling. Calculate all figures from SQLite rather than hard-coded examples. Use organised routes, controllers, models, migrations, Blade layouts and locally bundled Bootstrap assets. Escape user content, use parameterised database access and keep .env, passwords, databases, sessions and SSH keys outside Git. Add tests for login, guest restrictions, ownership, both CRUD modules, validation, category deletion protection, follow-ups, filters and report scoping. Fix errors found during testing.
+
+DEPLOYMENT AND GITHUB
+
+Prepare real SSH deployment with PHP, Composer, GitHub and a web server configured to serve Laravel’s public directory. Document cloning the repository, configuring production .env and SQLite, installing production dependencies, generating the key, running migrations and optimising caches. Use HTTPS and disable debug mode. Demonstrate a later visible change pushed to GitHub and applied on the hosting server using git pull --ff-only origin main. Provide the actual live URL only after deployment succeeds; a local URL does not satisfy that requirement. Keep hosting and the SSH update marked pending until completed.
+
+COMMANDS
+
+Local launch and tests:
+Set-Location "D:\Vibe Coding Practicals\29 - Resolve"
+.\Launch.cmd
+.\Test.cmd
+
+Update the existing GitHub checkout:
+git add .
+git commit -m "Refine Resolve campus helpdesk"
+git push origin main
+Repository: https://github.com/aadityasamani/resolve-campus-helpdesk
+
+After a real SSH deployment, update from the server checkout:
+ssh USER@HOST
+cd /actual/path/to/resolve
+git pull --ff-only origin main
+php artisan migrate --force
+php artisan optimize
+Replace server placeholders with real values. Leave screenshot capture to me.
